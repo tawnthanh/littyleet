@@ -31,15 +31,77 @@ Only one valid answer exists.
 Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
 */
 
+// Brute force
+// const twoSums = (nums, target) => {    
+//     for (let i = 0; i < nums.length; i++){
+//         for( let j = i+1; j < nums.length; j++){
+//             if((nums[i] + nums[j]) === target) return [i, j];
+//         }
+//     };
+//     return [];
+// }
 
+// This was pure trash... how did I do worse? 
+// const twoSums = (nums, target) => {    
+//     let idx = 0;
+//     let currArr = [idx, null];
+//     let currIdx = 1;
+
+//     while (!currArr.find(el => el === null)){
+//         if(nums[idx] + nums[currIdx]=== target){
+//             currArr[1] = currIdx;
+//             return currArr;
+//         } else {
+//             if(currIdx < nums.length - 1){
+//                 currIdx++;
+//             }else {
+//                 idx++;
+//                 currArr[0] = idx;
+//                 currIdx = idx + 1;
+//             }
+//         }
+//     }
+// }
+
+// Time was a bit better here but can I do better?? 
+// const twoSums = (nums, target) => {
+//     const foundIdx = [nums.length-1, null];
+//     let idx = foundIdx[0] - 1;
+//     while(nums.length > 0){
+//         if(nums[foundIdx[0]] + nums[idx] === target){
+//             foundIdx[1] = idx;
+//             break;
+//         } else if ( idx === 0 ){
+//             nums.pop();
+//             foundIdx[0] = nums.length-1;
+//             idx = foundIdx[0] - 1;
+//         } else {
+//             idx--;
+//         }
+//     };
+//     return foundIdx;
+// };
+
+// Kind of getting there..time still sucks so maybe not indexOf
+// const twoSums = (nums, target) => {
+//     for(let i = 0 ; i < nums.length; i++){
+//         let currVal = target - nums[i]
+//         if(nums.indexOf(currVal) > -1 && nums.indexOf(currVal) !== i ){
+//             return [i, nums.indexOf(currVal)]
+//         }
+//     }
+// }
+
+// Best result on this one...
 const twoSums = (nums, target) => {
-    
-    for (let i = 0; i < nums.length; i++){
-        for( let j = i+1; j < nums.length; j++){
-            if((nums[i] + nums[j]) === target) return [i, j];
+    let obj = {};
+    for(let i = 0 ; i < nums.length; i++){
+        let currVal = target - nums[i];
+        if(obj[currVal] !== undefined && obj[currVal] !== i){
+            return [i, obj[currVal]];
         }
-    };
-    return [];
+        obj[nums[i]] = i;
+    }
 }
 
 console.log(twoSums([2,7,11,15], 9));
