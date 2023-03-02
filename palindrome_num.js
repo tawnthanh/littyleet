@@ -27,17 +27,18 @@ Follow up: Could you solve it without converting the integer to a string?
 */
 
 // Brute Force
-const isPalindrome = (num) => {
-    if(num < 0) return false;
-    let str = num.toString();
-    for(let i = 0; i < str.length; i++){
-        if(str[i] !== str[str.length-1]){
-            return false;
-        }
-        str = str.slice(0, str.length - 1)
-    }
-    return true;
-}
+// const isPalindrome = (num) => {
+//     if(num < 0) return false;
+//     let str = num.toString();
+//     for(let i = 0; i < str.length; i++){
+//         if(str[i] !== str[str.length-1]){
+//             return false;
+//         }
+//         str = str.slice(0, str.length - 1)
+//     }
+//     return true;
+// }
+
 
 console.log(isPalindrome(121))
 console.log(isPalindrome(-121))
