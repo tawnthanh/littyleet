@@ -39,29 +39,56 @@ s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 */
 
-const romanToInt = (str) => {
-    const romanLib = {
-        "I": 1, 
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000
-    };
-    let total = 0;
+// brute force
+// const romanToInt = (str) => {
+//     const romanLib = {
+//         "I": 1, 
+//         "V": 5,
+//         "X": 10,
+//         "L": 50,
+//         "C": 100,
+//         "D": 500,
+//         "M": 1000
+//     };
+//     let total = 0;
 
-    for(let i = 0; i < str.length; i++){
-        if(romanLib[str[i]] < romanLib[str[i+1]]){
-            total += (romanLib[str[i+1]] - romanLib[str[i]])
-            i++;
-        } else {
-            total += romanLib[str[i]]
-        }
-    };
+//     for(let i = 0; i < str.length; i++){
+//         if(romanLib[str[i]] < romanLib[str[i+1]]){
+//             total += (romanLib[str[i+1]] - romanLib[str[i]])
+//             i++;
+//         } else {
+//             total += romanLib[str[i]]
+//         }
+//     };
 
-    return total;
-};
+//     return total;
+// };
+
+// Time and space improves by moving out the romanLib
+// const romanLib = {
+//     "I": 1, 
+//     "V": 5,
+//     "X": 10,
+//     "L": 50,
+//     "C": 100,
+//     "D": 500,
+//     "M": 1000
+// };
+
+// const romanToInt = (str) => {
+//     let total = 0;
+
+//     for(let i = 0; i < str.length; i++){
+//         if(romanLib[str[i]] < romanLib[str[i+1]]){
+//             total += (romanLib[str[i+1]] - romanLib[str[i]])
+//             i++;
+//         } else {
+//             total += romanLib[str[i]]
+//         }
+//     };
+
+//     return total;
+// };
 
 console.log(romanToInt("III")) // 3
 console.log(romanToInt("LVIII")) // 58
