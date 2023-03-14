@@ -18,3 +18,26 @@ Constraints:
 0 <= strs[i].length <= 200
 strs[i] consists of only lowercase English letters.
 */
+
+const longestCommonPrefix = (strs) => {
+    let firstWord = strs[0];
+    console.log("length - ", firstWord.length)
+    let secondWord = '';
+    let prefix = strs[0][0]; // do
+
+    for(let i = 1; i < firstWord.length; i++){
+        secondWord += strs[i][i-1];
+
+        if(secondWord !== prefix){ // do
+            break;
+        } else {
+            prefix += firstWord[i] // 
+        }
+    };
+
+    return prefix.length > 1 ? prefix : '';
+};
+
+console.log(longestCommonPrefix(["flower","flow","flight"])) // "fl"
+console.log(longestCommonPrefix(["dog","racecar","car"])) // ""
+console.log(longestCommonPrefix(["dogs","dogcoin","dogger"])) // "dog"
