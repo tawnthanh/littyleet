@@ -80,4 +80,21 @@ const buildKeys = (str) => {
     return buildSubstring(obj);
 }
 
-console.log(buildKeys("Banana boat"));
+// console.log(buildKeys("Banana boat"));
+
+const newApproach = (str) => {
+    let newStr = str.toLowerCase();
+    const obj = {};
+
+    let first = 0;
+    let last = newStr.length - 1;
+
+    for( let i = 0; i < newStr.length; i++){
+        if(!alphabet.includes(newStr[i])){
+           
+        }
+
+    }
+}
+
+console.log(newApproach("Banana Bo at"));
