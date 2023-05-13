@@ -20,24 +20,25 @@ strs[i] consists of only lowercase English letters.
 */
 
 const longestCommonPrefix = (strs) => {
-    let firstWord = strs[0];
-    console.log("length - ", firstWord.length)
-    let secondWord = '';
-    let prefix = strs[0][0]; // do
+    const sortedStrs = strs.sort((a, b) => a.length - b.length);
+    const firstWord = sortedStrs[0];
+    const lastWord = sortedStrs[sortedStrs.length - 1]
+    let prefix = "";
 
-    for(let i = 1; i < firstWord.length; i++){
-        secondWord += strs[i][i-1];
+    if(!strs.length) return "";
+    if(strs.length === 1) return firstWord;
 
-        if(secondWord !== prefix){ // do
-            break;
-        } else {
-            prefix += firstWord[i] // 
-        }
-    };
-
-    return prefix.length > 1 ? prefix : '';
+    for(let i = 0; i < firstWord.length; i++){
+        if(firstWord[i].toLowerCase() !== lastWord[i].toLowerCase()) break;
+        if(firstWord[i].toLowerCase() === lastWord[i].toLowerCase()){
+            prefix = firstWord.slice(0, i+1);
+        } ;
+    }
+    
+    return prefix;
 };
 
 console.log(longestCommonPrefix(["flower","flow","flight"])) // "fl"
 console.log(longestCommonPrefix(["dog","racecar","car"])) // ""
 console.log(longestCommonPrefix(["dogs","dogcoin","dogger"])) // "dog"
+console.log(longestCommonPrefix(["reflower","flow","flight"])) // "fl" is the answer on leetcode BUT IT SHOULDN'T. "reflower" has prefix of re...which none has so it should be "";

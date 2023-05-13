@@ -32,8 +32,7 @@ Every two consecutive words in sentence will be separated by exactly one space.
 sentence does not have leading or trailing spaces.
 */
 const findMatch = (dict, word) => {
-    const newDict = [...dict.sort()];
-    let rootWord = newDict[0].toLowerCase();
+    let rootWord = dict[0].toLowerCase();
 
     for(let i = 1; i < word.length ; i++){
         let subs = word.slice(0, i).toLowerCase();
@@ -60,11 +59,12 @@ const findMatch = (dict, word) => {
 };
 
 const replaceWords = (dictionary, sentence) => {
+    const newDict = [...dictionary.sort()];
     let newSentence = [];
     const sentArr = sentence.split(" ");
 
     sentArr.forEach((word) => {
-        const resultWord = findMatch(dictionary, word);
+        const resultWord = findMatch(newDict, word);
         newSentence.push(resultWord);
     })
 
